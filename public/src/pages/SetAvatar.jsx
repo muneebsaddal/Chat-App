@@ -9,6 +9,10 @@ import multiavatar from "@multiavatar/multiavatar/esm";
 import loader from "../assets/loader.gif";
 import { setAvatarRoute } from "../utils/APIRoutes";
 
+export function createMarkup(avatar) {
+	return { __html: avatar };
+}
+
 const SetAvatar = () => {
 	const navigate = useNavigate();
 	const [avatars, setAvatars] = useState([]);
@@ -33,11 +37,9 @@ const SetAvatar = () => {
 			const user = await JSON.parse(
 				localStorage.getItem("chat-app-user")
 			);
-            console.log(user)
 			const { data } = await axios.post(`${setAvatarRoute}/${user._id}`, {
 				image: avatars[selectedAvatar],
 			});
-            console.log(data)
 			if (data.isSet) {
 				user.isAvatarImageSet = true;
 				user.avatarImage = data.image;
@@ -61,10 +63,6 @@ const SetAvatar = () => {
 		setAvatars(data);
 		setIsLoading(false);
 	}, []);
-
-	function createMarkup(avatar) {
-		return { __html: avatar };
-	}
 
 	return (
 		<>
