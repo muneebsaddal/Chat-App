@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { createMarkup } from "../pages/SetAvatar";
+import Logout from "./Logout";
 
 const ChatContainer = ({ currentChat }) => {
 	return (
@@ -20,6 +21,7 @@ const ChatContainer = ({ currentChat }) => {
 								<h3>{currentChat.username}</h3>
 							</div>
 						</div>
+						<Logout />
 					</div>
 				</Container>
 			)}
