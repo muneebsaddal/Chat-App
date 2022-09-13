@@ -22,7 +22,6 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
 			{currentUserImage && currentUsername && (
 				<Container>
 					<div className="brand">
-						<img src={Logo} alt="logo" />
 						<h3>Chat app</h3>
 					</div>
 					<div className="contacts">
@@ -77,21 +76,17 @@ const Container = styled.div`
 	display: grid;
 	grid-template-row: 10% 75% 15%;
 	overflow: hidden;
-	background-color: #080420;
+	background-color: #090909;
 	.brand {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 1rem;
+		text-align: center;
 		margin: 1rem;
-        max-height: 5rem;
-        margin-bottom: auto;
-		img {
-			height: 2rem;
-		}
+		max-height: 5rem;
+		margin-bottom: auto;
 		h3 {
 			color: white;
 			text-transform: uppercase;
+			font-size: 2rem;
+			font-weight: 600;
 		}
 	}
 	.contacts {
@@ -100,17 +95,17 @@ const Container = styled.div`
 		align-items: center;
 		overflow: auto;
 		gap: 0.8rem;
-        margin-bottom: auto;
+		margin-bottom: auto;
 		&::-webkit-scrollbar {
 			width: 0.2rem;
 			&-thumb {
-				background-color: #ffffff39;
+				background-color: #dddddd;
 				width: 0.1rem;
 				border-radius: 1rem;
 			}
 		}
 		.contact {
-			background-color: #ffffff39;
+			background-color: #222;
 			min-height: 5rem;
 			width: 90%;
 			cursor: pointer;
@@ -129,22 +124,25 @@ const Container = styled.div`
 			.username {
 				h3 {
 					color: white;
+					font-size: 1.2rem;
+					font-weight: 500;
 				}
 			}
 		}
 		.selected {
-			background-color: #9186f3;
+			background-color: #555;
 		}
 	}
 	.current-user {
-		background-color: #0d0d30;
+		background-color: #222;
 		display: flex;
-		justify-content: center;
+		justify-content: flex-start;
 		align-items: center;
-		gap: 2rem;
+		gap: 1.5rem;
 		margin: 1rem;
-        max-height: 5rem;
-        margin-top: auto;
+		padding: 1rem 2rem;
+		max-height: 5rem;
+		margin-top: auto;
 		.avatar {
 			section {
 				height: 4rem;
@@ -155,6 +153,8 @@ const Container = styled.div`
 		.username {
 			h2 {
 				color: white;
+				font-size: 1.5rem;
+				font-weight: 500;
 			}
 		}
 		@media screen and (min-width: 720px) and (max-width: ) {

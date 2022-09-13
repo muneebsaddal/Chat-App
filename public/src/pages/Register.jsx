@@ -92,8 +92,7 @@ const Register = () => {
 			<FormContainer>
 				<form onSubmit={(event) => handleSubmit(event)}>
 					<div className="brand">
-						<img src={Logo} alt="Logo" />
-						<h1>snappy</h1>
+						<h1>CHAT APP</h1>
 					</div>
 					<input
 						type="text"
@@ -139,12 +138,9 @@ const FormContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	gap: 1rem;
-	background-color: #131324;
+	background-color: #000000;
 	.brand {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 1rem;
+		text-align: center;
 		img {
 			height: 5rem;
 		}
@@ -157,24 +153,23 @@ const FormContainer = styled.div`
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
-		background-color: #00000076;
+		background-color: #121212;
 		border-radius: 2rem;
 		padding: 3rem 5rem;
 		input {
 			background-color: transparent;
 			padding: 1rem;
-			border: 0.1rem solid #4e0eff;
+			border: 0.1rem solid #555;
 			border-radius: 0.4rem;
 			color: white;
 			width: 100%;
 			font-size: 1rem;
 			&:focus {
-				border: 0.1rem solid #997af0;
 				outline: none;
 			}
 		}
 		button {
-			background-color: #997af0;
+			background-color: #222;
 			color: white;
 			padding: 1rem 2rem;
 			border: none;
@@ -185,14 +180,15 @@ const FormContainer = styled.div`
 			text-transform: uppercase;
 			transition: 0.5s ease-in-out;
 			&:hover {
-				background-color: #4e0eff;
+				background-color: #444;
 			}
 		}
 		span {
-			color: white;
+            text-align: center;
+			color: #ddd;
 			text-transform: uppercase;
 			a {
-				color: #4e0eff;
+				color: #fff;
 				text-decoration: none;
 				font-weight: bold;
 			}

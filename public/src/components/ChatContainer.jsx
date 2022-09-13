@@ -50,7 +50,9 @@ const Container = styled.div`
 			}
 			.username {
 				h3 {
-					color: white;
+					color: #fff;
+                    font-size: 1.4rem;
+					font-weight: 500;
 				}
 			}
 		}

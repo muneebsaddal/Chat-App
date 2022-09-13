@@ -21,11 +21,16 @@ const Container = styled.div`
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	color: white;
+	color: #ccc;
+	h1 {
+		font-size: 2rem;
+		font-weight: 500;
+	}
+	h3 {
+        font-size: 1.4rem;
+		font-weight: 500;
+	}
 	img {
 		height: 20rem;
 	}
-    span {
-        color: #4e00ff;
-    }
 `;
