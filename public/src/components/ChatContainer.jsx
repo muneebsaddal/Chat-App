@@ -1,9 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { createMarkup } from "../pages/SetAvatar";
+import ChatInput from "./ChatInput";
 import Logout from "./Logout";
+import Messages from "./Messages";
 
 const ChatContainer = ({ currentChat }) => {
+	const handleSendMessage = async (message) => {
+		alert(message);
+	};
 	return (
 		<>
 			{currentChat && (
@@ -23,6 +28,8 @@ const ChatContainer = ({ currentChat }) => {
 						</div>
 						<Logout />
 					</div>
+					<Messages />
+					<ChatInput handleSendMessage={handleSendMessage} />
 				</Container>
 			)}
 		</>
@@ -32,12 +39,13 @@ const ChatContainer = ({ currentChat }) => {
 export default ChatContainer;
 
 const Container = styled.div`
-	padding-top: 1rem;
 	.chat-header {
+		height: 10%;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 2rem;
+		background: #090909;
 		.user-details {
 			display: flex;
 			align-items: center;
@@ -51,7 +59,7 @@ const Container = styled.div`
 			.username {
 				h3 {
 					color: #fff;
-                    font-size: 1.4rem;
+					font-size: 1.4rem;
 					font-weight: 500;
 				}
 			}
