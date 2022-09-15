@@ -51,7 +51,6 @@ const ChatInput = ({ handleSendMessage }) => {
 export default ChatInput;
 
 const Container = styled.div`
-	height: 10%;
 	display: grid;
 	grid-template-columns: 5% 95%;
 	align-items: center;
