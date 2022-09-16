@@ -29,6 +29,7 @@ const SetAvatar = () => {
 		if (!localStorage.getItem("chat-app-user")) {
 			navigate("/login");
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	const setProfilePicture = async () => {
 		if (selectedAvatar === undefined) {

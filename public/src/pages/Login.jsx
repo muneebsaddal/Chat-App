@@ -5,7 +5,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
-import Logo from "../assets/logo.svg";
 import { loginRoute } from "../utils/APIRoutes";
 
 const Login = () => {
@@ -27,6 +26,7 @@ const Login = () => {
 		if (localStorage.getItem("chat-app-user")) {
 			navigate("/");
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const handleSubmit = async (event) => {

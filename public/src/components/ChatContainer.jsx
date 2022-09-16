@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
@@ -7,8 +7,10 @@ import { getAllMessagesRoute, sendMessageRoute } from "../utils/APIRoutes";
 import ChatInput from "./ChatInput";
 import Logout from "./Logout";
 
-const ChatContainer = ({ currentChat, currentUser }) => {
+const ChatContainer = ({ currentChat, currentUser, socket }) => {
 	const [messages, setMessages] = useState([]);
+	const [receivedMessage, setReceivedMessage] = useState(null);
+	const scrollRef = useRef();
 
 	useEffect(() => {
 		async function getAllMessages() {
@@ -31,7 +33,32 @@ const ChatContainer = ({ currentChat, currentUser }) => {
 			to: currentChat._id,
 			message: message,
 		});
+		socket.current.emit("send-message", {
+			to: currentChat._id,
+			from: currentUser._id,
+			message: message,
+		});
+		const tempMessages = [...messages];
+		tempMessages.push({ fromSelf: true, message: message });
+		setMessages(tempMessages);
 	};
+
+	useEffect(() => {
+		if (socket.current) {
+			socket.current.on("message-received", (message) => {
+				setReceivedMessage({ fromSelf: false, message: message });
+			});
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	useEffect(() => {
+		receivedMessage && setMessages((prev) => [...prev, receivedMessage]);
+	}, [receivedMessage]);
+
+	useEffect(() => {
+		scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+	}, [messages]);
 
 	return (
 		<>
@@ -55,7 +82,7 @@ const ChatContainer = ({ currentChat, currentUser }) => {
 					<div className="chat-messages">
 						{messages.map((message) => {
 							return (
-								<div key={uuidv4()}>
+								<div ref={scrollRef} key={uuidv4()}>
 									<div
 										className={`message ${
 											message.fromSelf
@@ -118,7 +145,14 @@ const Container = styled.div`
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-		overflow: auto;
+		overflow: auto;&::-webkit-scrollbar {
+            width: 0.2rem;
+            &-thumb {
+                background-color: #ffffff39;
+                width: 0.1rem;
+                border-radius: 1rem;
+            }
+        }
 		.message {
 			display: flex;
 			align-items: center;
