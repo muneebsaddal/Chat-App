@@ -6,16 +6,28 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
 	const [currentUsername, setCurrentUsername] = useState(undefined);
 	const [currentUserImage, setCurrentUserImage] = useState(undefined);
 	const [currentSelected, setCurrentSelected] = useState(undefined);
+	const [searchString, setSearchString] = useState("");
+
 	useEffect(() => {
 		if (currentUser) {
 			setCurrentUsername(currentUser.username);
 			setCurrentUserImage(currentUser.avatarImage);
 		}
 	}, [currentUser]);
+
 	const changeCurrentChat = (index, contact) => {
 		setCurrentSelected(index);
 		changeChat(contact);
 	};
+
+	const handleSearch = (e) => {
+		setSearchString(e.target.value.toLowerCase());
+	};
+
+	const SearchedContacts = contacts.filter(
+		(contact) => !contact.username.toLowerCase().indexOf(searchString)
+	);
+
 	return (
 		<>
 			{currentUserImage && currentUsername && (
@@ -23,8 +35,17 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
 					<div className="brand">
 						<h3>Chat app</h3>
 					</div>
+					<div className="search">
+						<input
+							id="search"
+							placeholder="Search"
+							type="text"
+							name="Search"
+							onChange={handleSearch}
+						/>
+					</div>
 					<div className="contacts">
-						{contacts.map((contact, index) => {
+						{SearchedContacts.map((contact, index) => {
 							return (
 								<div
 									className={`contact ${
@@ -73,7 +94,7 @@ export default Contacts;
 
 const Container = styled.div`
 	display: grid;
-	grid-template-row: 10% 75% 15%;
+	grid-template-row: 15% 10% 60% 15%;
 	overflow: hidden;
 	background-color: #090909;
 	.brand {
@@ -86,6 +107,28 @@ const Container = styled.div`
 			text-transform: uppercase;
 			font-size: 2rem;
 			font-weight: 600;
+		}
+	}
+	.search {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		input {
+			margin: 1rem 0;
+			padding-left: 1rem;
+			width: 90%;
+			height: 3rem;
+			border: 1px solid #333;
+			border-radius: 0.2rem;
+			background-color: #222;
+			color: white;
+			font-size: 1.2rem;
+			&::selection {
+				background-color: #888;
+			}
+			&:focus {
+				outline: none;
+			}
 		}
 	}
 	.contacts {
@@ -143,6 +186,7 @@ const Container = styled.div`
 		padding: 1rem 2rem;
 		max-height: 5rem;
 		margin-top: auto;
+		border-radius: 0.2rem;
 		.avatar {
 			section {
 				height: 4rem;
