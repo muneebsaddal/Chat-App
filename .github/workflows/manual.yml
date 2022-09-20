@@ -10,11 +10,8 @@ jobs:
             - name: List files in the repository
               run: |
                   ls ${{ github.workspace }}
-            - name: Change directory
-              run: |
-                  cd public/
             - name: Install dependencies
-              run: cd public/ npm install
+              run: cd public/ | npm install
             - name: Cypress run
               uses: cypress-io/github-action@v4
               with:
