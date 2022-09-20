@@ -14,7 +14,7 @@ jobs:
               run: |
                   cd public/
             - name: Install dependencies
-              run: npm install
+              run: cd public/ npm install
             - name: Cypress run
               uses: cypress-io/github-action@v4
               with:
