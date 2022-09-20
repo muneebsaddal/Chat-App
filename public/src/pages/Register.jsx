@@ -28,7 +28,7 @@ const Register = () => {
 		if (localStorage.getItem("chat-app-user")) {
 			navigate("/");
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const handleSubmit = async (event) => {
@@ -95,31 +95,37 @@ const Register = () => {
 						<h1>CHAT APP</h1>
 					</div>
 					<input
+						id="username"
 						type="text"
 						placeholder="Username"
 						name="username"
 						onChange={(e) => handleChange(e)}
 					/>
 					<input
+						id="email"
 						type="email"
 						placeholder="Email"
 						name="email"
 						onChange={(e) => handleChange(e)}
 					/>
 					<input
+						id="password"
 						type="password"
 						placeholder="Password"
 						name="password"
 						onChange={(e) => handleChange(e)}
 					/>
 					<input
+						id="confirmPassword"
 						type="password"
 						placeholder="Confirm Password"
 						name="confirmPassword"
 						onChange={(e) => handleChange(e)}
 					/>
 
-					<button type="submit">Create User</button>
+					<button id="register-button" type="submit">
+						Create User
+					</button>
 					<span>
 						Already have an account? <Link to="/login">Login</Link>
 					</span>
@@ -184,7 +190,7 @@ const FormContainer = styled.div`
 			}
 		}
 		span {
-            text-align: center;
+			text-align: center;
 			color: #ddd;
 			text-transform: uppercase;
 			a {

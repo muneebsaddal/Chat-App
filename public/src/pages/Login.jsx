@@ -26,7 +26,7 @@ const Login = () => {
 		if (localStorage.getItem("chat-app-user")) {
 			navigate("/");
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const handleSubmit = async (event) => {
@@ -75,18 +75,22 @@ const Login = () => {
 						<h1>CHAT APP</h1>
 					</div>
 					<input
+						id="username"
 						type="text"
 						placeholder="Username"
 						name="username"
 						onChange={(e) => handleChange(e)}
 					/>
 					<input
+						id="password"
 						type="password"
 						placeholder="Password"
 						name="password"
 						onChange={(e) => handleChange(e)}
 					/>
-					<button type="submit">Login</button>
+					<button id="loginButton" type="submit">
+						Login
+					</button>
 					<span>
 						Don't have an account?{" "}
 						<Link to="/register">Register</Link>

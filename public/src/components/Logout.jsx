@@ -10,7 +10,7 @@ const Logout = () => {
 		navigate("/login");
 	};
 	return (
-		<Button onClick={handleClick}>
+		<Button id="logoutButton" onClick={handleClick}>
 			<BiPowerOff />
 		</Button>
 	);

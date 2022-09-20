@@ -93,6 +93,7 @@ const Container = styled.div`
 		flex-direction: column;
 		align-items: center;
 		overflow: auto;
+		max-height: 97%;
 		gap: 0.8rem;
 		margin-bottom: auto;
 		&::-webkit-scrollbar {
