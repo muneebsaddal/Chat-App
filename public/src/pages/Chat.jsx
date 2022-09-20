@@ -9,6 +9,7 @@ import { allUsersRoute, host } from "../utils/APIRoutes";
 import Contacts from "../components/Contacts";
 import Welcome from "../components/Welcome";
 import ChatContainer from "../components/ChatContainer";
+import UserProfile from "../components/UserProfile";
 
 const Chat = () => {
 	const socket = useRef();
@@ -17,6 +18,11 @@ const Chat = () => {
 	const [currentUser, setCurrentUser] = useState(undefined);
 	const [currentChat, setCurrentChat] = useState(undefined);
 	const [isLoaded, setIsLoaded] = useState(false);
+	const [userProfile, setUserProfile] = useState(true);
+
+	const handleUserProfileState = () => {
+		setUserProfile((prevState) => !prevState);
+	};
 
 	useEffect(() => {
 		async function setUser() {
@@ -67,8 +73,11 @@ const Chat = () => {
 					contacts={contacts}
 					currentUser={currentUser}
 					changeChat={handleChatChange}
+					handleUserProfileState={handleUserProfileState}
 				/>
-				{isLoaded && currentChat === undefined ? (
+				{isLoaded && userProfile === true ? (
+					<UserProfile currentUser={currentUser}/>
+				) : isLoaded && currentChat === undefined ? (
 					<Welcome currentUser={currentUser} />
 				) : (
 					<ChatContainer

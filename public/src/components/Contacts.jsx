@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { createMarkup } from "../pages/SetAvatar";
 
-const Contacts = ({ contacts, currentUser, changeChat }) => {
+const Contacts = ({
+	contacts,
+	currentUser,
+	changeChat,
+	handleUserProfileState,
+}) => {
 	const [currentUsername, setCurrentUsername] = useState(undefined);
 	const [currentUserImage, setCurrentUserImage] = useState(undefined);
 	const [currentSelected, setCurrentSelected] = useState(undefined);
@@ -72,7 +77,10 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
 							);
 						})}
 					</div>
-					<div className="current-user">
+					<div
+						className="current-user"
+						onClick={handleUserProfileState}
+					>
 						<div className="avatar">
 							<section
 								dangerouslySetInnerHTML={createMarkup(
@@ -187,6 +195,7 @@ const Container = styled.div`
 		max-height: 5rem;
 		margin-top: auto;
 		border-radius: 0.2rem;
+        cursor: pointer;
 		.avatar {
 			section {
 				height: 4rem;
